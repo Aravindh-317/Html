@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+    <style>
+        h1{
+            background-color: lightgreen;
+            width: 100px;
+            border: 2px solid;
+        }
+        div{
+            background-color: #bca;
+            width: 100px;
+            height: 1.1em;
+            text-align: center;
+            border: 2px solid green;
+            margin: 3px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <button id="bt">ANIMATE</button>
+    <h1>Hello!</h1>
+
+    <div id="block1">BLOCK1</div>
+    <div id="block2">BLOCK2</div><br>
+    <button class="bt1">ANIMATE BLOCK1</button><br><br>
+    <button class="bt2">ANIMATE BLOCK2</button><br><br>
+    <button class="bt3">ANIMATE Both BLOCKS</button><br><br>
+    <button class="bt4">RESET</button><br><br>
+    
+    <button id="bt3">ANIMATE IMG</button>
+    <button id="bt4">Stop Animate</button><br><br>
+    <img src="hacker.webp" alt="Sample Image" style="width: 100px; height: 100px;border: 2px solid;"><br><br> 
+
+    <button id="bt2">ANIMATE P</button>
+    <p style="background-color: #efd;width: 190px;border: 3px solid #ccc;position: absolute;">Lorem ipsum dolor sit amet.</p><br><br>
+
+
+    <script>
+        $(document).ready(()=>{
+            $("#bt").click(function(){
+                $("h1").animate({
+                    width:"50%",
+                    marginLeft:"0.8in",
+                    fontSize:"48px",
+                    borderColor:"green",
+                    borderLeftWidth:"0.5em"
+                },1500);
+            });
+            $(".bt1").click(function(){
+                $("#block1").animate({width:"75%"},{queue:false,duration:3000})
+                .animate({fontSize:"24px"},1500).animate({borderColor:"red"},1500);
+            });
+            $(".bt2").click(function(){
+                $("#block2").animate({width:"75%"},3000)
+                .animate({fontSize:"24px"},1500).animate({borderColor:"red"},1500);
+            });
+            $(".bt3").click(function(){
+                $(".bt1").add(".bt2").trigger("click");
+            })
+            $(".bt4").click(()=>{
+                $("div").css({
+                    width:"",
+                    fontSize:"",
+                    borderColor:""
+                },3000)
+            })
+            $("#bt2").click(function(){
+                $("p").animate({
+                    left:"+=20px",
+                    top:"+=100px",
+                    fontSize:"23px",
+                    width:"75%",
+                    height:"toggle",
+                    borderColor:"red"},1500);
+            });
+
+            $("#bt3").click(function(){
+                $("img").animate({
+                    width:"200px",
+                    height:"200px",
+                    borderColor:"red",
+                    borderRadius:"50%"
+                },5000);
+            });
+            $("#bt4").click(function(){
+                $("img").stop();
+            });
+        })
+    </script>
+</body>
+</html>
